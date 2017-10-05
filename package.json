@@ -1,0 +1,18 @@
+{
+  "name": "net-particles",
+  "version": "1.0.0",
+  "description": "html5 canvas js network interactive particle effects",
+  "main": "index.js",
+  "author": "Kenny Inthirath <kenny.inthirath@gmail.com>",
+  "license": "MIT",
+  "scripts":{
+    "dev": "webpack-dev-server --open --port 3000 --host 0.0.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  }
+}
