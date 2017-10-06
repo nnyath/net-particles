@@ -1,13 +1,13 @@
 var path = require('path')
 
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ['./demo/index.js'],
   devServer: {
-    contentBase: './src'
+    contentBase: './demo'
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'net-particles.js'
+    path: path.resolve(__dirname, 'demo'),
+    filename: 'NetParticles.js'
   },
   module: {
     rules: [
@@ -22,5 +22,5 @@ module.exports = {
         }
       }
     ]
-  }
+  },
 };
