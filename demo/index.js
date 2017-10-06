@@ -1,6 +1,7 @@
-import {NetParticle, ParticleNetwork, Particle} from '../src/NetParticles'
+var NetParticle = require('../src/NetParticles')
 
-let NP = new NetParticle(document.getElementById('board'))
+
+let NP = new NetParticle.NetParticle(document.getElementById('board'))
 
 NP.init()
 NP.play()
