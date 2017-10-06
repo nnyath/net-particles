@@ -77,9 +77,9 @@ module.exports = __webpack_require__(1);
 "use strict";
 
 
-var _NetParticles = __webpack_require__(2);
+var NetParticle = __webpack_require__(2);
 
-var NP = new _NetParticles.NetParticle(document.getElementById('board'));
+var NP = new NetParticle.NetParticle(document.getElementById('board'));
 
 NP.init();
 NP.play();
