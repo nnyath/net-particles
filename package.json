@@ -18,5 +18,21 @@
   },
   "devDependencies": {
     "webpack-dev-server": "^2.9.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nnyath/net-particles.git"
+  },
+  "keywords": [
+    "html5",
+    "canvas",
+    "particle",
+    "network",
+    "animation",
+    "points"
+  ],
+  "bugs": {
+    "url": "https://github.com/nnyath/net-particles/issues"
+  },
+  "homepage": "https://github.com/nnyath/net-particles#readme"
 }
