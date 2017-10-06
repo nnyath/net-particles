@@ -1,8 +1,11 @@
 # Net Particles
-## Yet another HTML5 Canvas particle network animation*, **
+### Yet another HTML5 Canvas particle network animation*, **
 
 ***CURRENTLY IN PRE-PRE-RELEASE**<br>
 ****AKA WORK TO BE DONE**
+
+**CODEPEN DEMO**<br>
+<https://codepen.io/nnyath/pen/QqQMLW>
 
 Inspired by the likes of [Canvas Particle Network](https://github.com/JulianLaval/canvas-particle-network) and multitude of other point network animations out there. This one stands out (slightly) with the following
 * Modern ES Module Implementation
@@ -10,10 +13,8 @@ Inspired by the likes of [Canvas Particle Network](https://github.com/JulianLava
 * Optional automatic canvas resizing
 * Included dev environment
 
-This comes in at 3.8kb babelfied & uglified sizing at 1.5kb gzipped.
 
 ## Install
----
 Use your favorite package manager
 
 ```javascript
@@ -23,7 +24,6 @@ npm install net-particles
 ```
 
 ## Default Usage
----
 
 NetParticles's default animation implementation works by simply providing the Canvas's DOM element. 
 
@@ -46,7 +46,6 @@ NetP.play()
 ```
 
 ## Customizing Quickstart
----
 
 **Start customizing by adding the additional object type**
 ```javascript
@@ -81,7 +80,6 @@ NetP.play()
 ```
 
 ## Options
----
 NetParticle can be customized in these ways _(with more ways coming in the future)_ via the config object passed to `ParticleNetwork`'s arguments
 
 **max_particles**
@@ -129,7 +127,6 @@ Offset used to calculate bouncing back from the edge of the canvas (in pixels)
 {offset : INT}
 ```
 
-### License
----
+## License
 The MIT License (MIT)<br>
 Copyright (c) 2017 [Kenny Inthirath ](mailto:kenny.inthirath@gmail.com)
