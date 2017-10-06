@@ -5,7 +5,8 @@
   "main": "index.js",
   "author": "Kenny Inthirath <kenny.inthirath@gmail.com>",
   "license": "MIT",
-  "scripts":{
+  "scripts": {
+    "dist": "webpack",
     "dev": "webpack-dev-server --open --port 3000 --host 0.0.0.0"
   },
   "devDependencies": {
