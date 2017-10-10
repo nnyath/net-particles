@@ -91,7 +91,8 @@ var max_particles = 50,
     color = 'white',
     opacity = .7,
     radius = 5,
-    offset = 30;
+    offset = 30,
+    conn_distance = 200;
 
 var Particle = function () {
   function Particle(canvas, opts) {
@@ -102,7 +103,9 @@ var Particle = function () {
       y: Math.random() * canvas.height,
       velocity: { x: (Math.random() - 0.5) * velocity.x, y: (Math.random() - 0.5) * velocity.y },
       ctx: canvas.getContext('2d') ? canvas.getContext('2d') : undefined
-    }, opts);
+    },
+    //Optional Params 
+    opts);
   }
 
   _createClass(Particle, [{
@@ -134,7 +137,7 @@ var ParticleNetwork = function () {
   function ParticleNetwork(canvas, opts) {
     _classCallCheck(this, ParticleNetwork);
 
-    Object.assign(this, { max_particles: max_particles, velocity: velocity, color: color, opacity: opacity, radius: radius, offset: offset }, { canvas: canvas }, {
+    Object.assign(this, { max_particles: max_particles, velocity: velocity, color: color, opacity: opacity, radius: radius, offset: offset, conn_distance: conn_distance }, { canvas: canvas }, {
       particles: new Array(),
       ctx: canvas.getContext('2d') ? canvas.getContext('2d') : undefined
     }, opts);
@@ -188,11 +191,11 @@ var ParticleNetwork = function () {
         for (var i = ind; i < particles.length; i++) {
           var distance = Math.sqrt(Math.pow(particle.x - particles[i].x, 2) + Math.pow(particle.y - particles[i].y, 2));
 
-          if (distance > 120) continue;
+          if (distance > _this.conn_distance) continue;
 
           _this.ctx.beginPath();
           _this.ctx.strokeStyle = particle.color;
-          _this.ctx.globalAlpha = (120 - distance) / 120;
+          _this.ctx.globalAlpha = (_this.conn_distance - distance) / _this.conn_distance;
           _this.ctx.lineWidth = particle.size / 7;
           _this.ctx.moveTo(particle.x, particle.y);
           _this.ctx.lineTo(particles[i].x, _this.particles[i].y);
