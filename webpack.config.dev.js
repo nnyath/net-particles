@@ -7,8 +7,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'demo'),
-    filename: 'NetParticles.js',
-    libraryTarget:'commonjs2'
+    filename: 'demo.js'
   },
   module: {
     rules: [

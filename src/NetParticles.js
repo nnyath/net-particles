@@ -6,20 +6,22 @@ const
   color = 'white',
   opacity = .7,
   radius = 5,
-  offset = 30
+  offset = 30,
+  conn_distance = 200
 
 class Particle {
 
   constructor(canvas, opts){
     Object.assign(this,
       { color, opacity, radius, offset },
-      { canvas }, 
+      { canvas },
       {
         x:Math.random() * canvas.width, 
         y:Math.random() * canvas.height,
         velocity : {x:(Math.random() - 0.5) * velocity.x, y:(Math.random() - 0.5) * velocity.y },
         ctx: canvas.getContext('2d') ? canvas.getContext('2d') : undefined
-      }, 
+      },
+      //Optional Params 
       opts)
   }
 
@@ -53,7 +55,7 @@ class ParticleNetwork {
 
   constructor(canvas, opts){
     Object.assign(this,
-      { max_particles, velocity, color, opacity, radius, offset },
+      { max_particles, velocity, color, opacity, radius, offset, conn_distance },
       { canvas },
       { 
         particles : new Array(),
@@ -87,12 +89,12 @@ class ParticleNetwork {
       for(let i=ind; i<particles.length;i++){
         let distance = Math.sqrt( Math.pow(particle.x - particles[i].x, 2) + Math.pow(particle.y - particles[i].y, 2))
         
-        if(distance > 120)
+        if(distance > this.conn_distance)
           continue
 
         this.ctx.beginPath()
         this.ctx.strokeStyle = particle.color
-        this.ctx.globalAlpha = (120 - distance) / 120
+        this.ctx.globalAlpha = (this.conn_distance - distance) / this.conn_distance
         this.ctx.lineWidth = particle.size / 7
         this.ctx.moveTo(particle.x, particle.y)
         this.ctx.lineTo(particles[i].x, this.particles[i].y)

@@ -77,9 +77,13 @@ module.exports = __webpack_require__(1);
 "use strict";
 
 
-var NetParticle = __webpack_require__(2);
+var _NetParticles = __webpack_require__(2);
 
-var NP = new NetParticle.NetParticle(document.getElementById('board'));
+var _NetParticles2 = _interopRequireDefault(_NetParticles);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NP = new _NetParticles2.default.NetParticle(document.getElementById('board'));
 
 NP.init();
 NP.play();
@@ -104,7 +108,8 @@ var max_particles = 50,
     color = 'white',
     opacity = .7,
     radius = 5,
-    offset = 30;
+    offset = 30,
+    conn_distance = 200;
 
 var Particle = function () {
   function Particle(canvas, opts) {
@@ -115,7 +120,9 @@ var Particle = function () {
       y: Math.random() * canvas.height,
       velocity: { x: (Math.random() - 0.5) * velocity.x, y: (Math.random() - 0.5) * velocity.y },
       ctx: canvas.getContext('2d') ? canvas.getContext('2d') : undefined
-    }, opts);
+    },
+    //Optional Params 
+    opts);
   }
 
   _createClass(Particle, [{
@@ -147,7 +154,7 @@ var ParticleNetwork = function () {
   function ParticleNetwork(canvas, opts) {
     _classCallCheck(this, ParticleNetwork);
 
-    Object.assign(this, { max_particles: max_particles, velocity: velocity, color: color, opacity: opacity, radius: radius, offset: offset }, { canvas: canvas }, {
+    Object.assign(this, { max_particles: max_particles, velocity: velocity, color: color, opacity: opacity, radius: radius, offset: offset, conn_distance: conn_distance }, { canvas: canvas }, {
       particles: new Array(),
       ctx: canvas.getContext('2d') ? canvas.getContext('2d') : undefined
     }, opts);
@@ -205,8 +212,8 @@ var ParticleNetwork = function () {
 
           _this.ctx.beginPath();
           _this.ctx.strokeStyle = particle.color;
-          _this.ctx.globalAlpha = (120 - distance) / 120;
-          _this.ctx.lineWidth = particle.size / 7;
+          _this.ctx.globalAlpha = (_this.conn_distance - distance) / _this.conn_distance;
+          _this.ctx.lineWidth = particle.size / 7(_this.opacity);
           _this.ctx.moveTo(particle.x, particle.y);
           _this.ctx.lineTo(particles[i].x, _this.particles[i].y);
           _this.ctx.stroke();
