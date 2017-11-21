@@ -221,7 +221,8 @@ var NetParticle = function () {
     Object.assign(this, {
       canvas: canvas,
       ctx: canvas.getContext('2d') ? canvas.getContext('2d') : undefined,
-      networks: networks
+      networks: networks,
+      paused: false
     });
 
     var resize = function resize() {
@@ -266,33 +267,40 @@ var NetParticle = function () {
   }, {
     key: 'play',
     value: function play() {
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
+      if (this.paused !== true) {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
 
-      try {
-        for (var _iterator3 = this.networks[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var network = _step3.value;
-
-          network.draw();
-        }
-      } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
-      } finally {
         try {
-          if (!_iteratorNormalCompletion3 && _iterator3.return) {
-            _iterator3.return();
+          for (var _iterator3 = this.networks[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var network = _step3.value;
+
+            network.draw();
           }
+        } catch (err) {
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
         } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
+          try {
+            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+              _iterator3.return();
+            }
+          } finally {
+            if (_didIteratorError3) {
+              throw _iteratorError3;
+            }
           }
         }
       }
 
       window.requestAnimationFrame(this.play.bind(this));
+    }
+  }, {
+    key: 'togglePause',
+    value: function togglePause() {
+      this.paused = !this.paused;
     }
   }]);
 

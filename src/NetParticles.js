@@ -113,7 +113,8 @@ class NetParticle {
       {
         canvas,
         ctx : canvas.getContext('2d') ? canvas.getContext('2d') : undefined, 
-        networks
+        networks,
+        paused : false
     })
 
     const resize = ()=>{
@@ -132,11 +133,21 @@ class NetParticle {
   }
 
   play(){
-    this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height)
-    for(let network of this.networks)
-      network.draw()
-    window.requestAnimationFrame(this.play.bind(this))  
+    if(this.paused!==true){
+      this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height)
+      for(let network of this.networks)
+        network.draw() 
+    }
+
+    window.requestAnimationFrame(this.play.bind(this)) 
+
   }
+
+  togglePause(){
+    this.paused = !this.paused
+  }
+
+
 }
 
 export { NetParticle as default, NetParticle, ParticleNetwork, Particle }

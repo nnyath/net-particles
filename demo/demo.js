@@ -83,7 +83,7 @@ var _NetParticles2 = _interopRequireDefault(_NetParticles);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NP = new _NetParticles2.default.NetParticle(document.getElementById('board'));
+var NP = new _NetParticles2.default(document.getElementById('board'));
 
 NP.init();
 NP.play();
@@ -208,12 +208,12 @@ var ParticleNetwork = function () {
         for (var i = ind; i < particles.length; i++) {
           var distance = Math.sqrt(Math.pow(particle.x - particles[i].x, 2) + Math.pow(particle.y - particles[i].y, 2));
 
-          if (distance > 120) continue;
+          if (distance > _this.conn_distance) continue;
 
           _this.ctx.beginPath();
           _this.ctx.strokeStyle = particle.color;
           _this.ctx.globalAlpha = (_this.conn_distance - distance) / _this.conn_distance;
-          _this.ctx.lineWidth = particle.size / 7(_this.opacity);
+          _this.ctx.lineWidth = particle.size / 7;
           _this.ctx.moveTo(particle.x, particle.y);
           _this.ctx.lineTo(particles[i].x, _this.particles[i].y);
           _this.ctx.stroke();
@@ -238,7 +238,8 @@ var NetParticle = function () {
     Object.assign(this, {
       canvas: canvas,
       ctx: canvas.getContext('2d') ? canvas.getContext('2d') : undefined,
-      networks: networks
+      networks: networks,
+      paused: false
     });
 
     var resize = function resize() {
@@ -283,33 +284,40 @@ var NetParticle = function () {
   }, {
     key: 'play',
     value: function play() {
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
+      if (paused !== true) {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
 
-      try {
-        for (var _iterator3 = this.networks[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var network = _step3.value;
-
-          network.draw();
-        }
-      } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
-      } finally {
         try {
-          if (!_iteratorNormalCompletion3 && _iterator3.return) {
-            _iterator3.return();
+          for (var _iterator3 = this.networks[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var network = _step3.value;
+
+            network.draw();
           }
+        } catch (err) {
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
         } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
+          try {
+            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+              _iterator3.return();
+            }
+          } finally {
+            if (_didIteratorError3) {
+              throw _iteratorError3;
+            }
           }
         }
       }
 
       window.requestAnimationFrame(this.play.bind(this));
+    }
+  }, {
+    key: 'pause',
+    value: function pause() {
+      this.paused = !this.paused;
     }
   }]);
 

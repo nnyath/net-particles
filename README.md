@@ -45,6 +45,15 @@ NetP.init()
 NetP.play()
 ```
 
+## Pausing the Animation (New Feature! 🔥)
+Simply pause/unpause using a toggle for NetParticles object with.
+
+Perfect for saving resources when the canvas is out of viewport (though you have to hook up your own way to detect it using something like [emergence.js](https://xtianmiller.github.io/emergence.js/))
+```javascript
+NetP.togglePause()
+```
+
+
 ## Customizing Quickstart
 
 **Start customizing by adding the additional object type**
