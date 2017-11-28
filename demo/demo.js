@@ -88,6 +88,16 @@ var NP = new _NetParticles2.default(document.getElementById('board'));
 NP.init();
 NP.play();
 
+setTimeout(function () {
+  console.log('pausing');
+  NP.togglePause();
+}, 10000);
+
+setTimeout(function () {
+  console.log('unpausing');
+  NP.togglePause();
+}, 15000);
+
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -249,8 +259,11 @@ var NetParticle = function () {
       canvas.height = canvas.parentNode.getBoundingClientRect().height;
     };
 
+    document.readyState ? resize() : document.addEventListener('DOMContentLoaded', function () {
+      resize();
+    });
+
     window.addEventListener('resize', resize, false);
-    resize();
   }
 
   _createClass(NetParticle, [{
@@ -284,7 +297,7 @@ var NetParticle = function () {
   }, {
     key: 'play',
     value: function play() {
-      if (paused !== true) {
+      if (this.paused !== true) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         var _iteratorNormalCompletion3 = true;
         var _didIteratorError3 = false;
@@ -315,8 +328,8 @@ var NetParticle = function () {
       window.requestAnimationFrame(this.play.bind(this));
     }
   }, {
-    key: 'pause',
-    value: function pause() {
+    key: 'togglePause',
+    value: function togglePause() {
       this.paused = !this.paused;
     }
   }]);

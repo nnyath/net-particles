@@ -123,8 +123,12 @@ class NetParticle {
       canvas.height = canvas.parentNode.getBoundingClientRect().height
     }
 
+    document.readyState ? resize() : document.addEventListener('DOMContentLoaded', ()=>{
+      resize()
+    })
+
     window.addEventListener('resize',resize,false)
-    resize()
+    
   }
 
   init(){

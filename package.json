@@ -1,6 +1,6 @@
 {
   "name": "net-particles",
-  "version": "0.9.7",
+  "version": "0.9.81",
   "description": "html5 canvas js network interactive particle effects",
   "main": "dist/NetParticles.js",
   "author": "Kenny Inthirath <kenny.inthirath@gmail.com>",

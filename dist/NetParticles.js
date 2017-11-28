@@ -232,8 +232,11 @@ var NetParticle = function () {
       canvas.height = canvas.parentNode.getBoundingClientRect().height;
     };
 
+    document.readyState ? resize() : document.addEventListener('DOMContentLoaded', function () {
+      resize();
+    });
+
     window.addEventListener('resize', resize, false);
-    resize();
   }
 
   _createClass(NetParticle, [{
